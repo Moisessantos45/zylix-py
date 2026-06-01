@@ -36,13 +36,13 @@ echo.
 
 REM Instalar dependencias
 echo [2/5] Instalando dependencias...
-pip install pyinstaller
-pip install PySide6 pypdf pillow numpy pytesseract pdf2image scikit-image python-docx
+python -m pip install pyinstaller
+python -m pip install PySide6 pypdf pillow numpy pytesseract pdf2image scikit-image python-docx
 echo.
 
 REM Compilar con PyInstaller
 echo [3/5] Compilando con PyInstaller...
-pyinstaller --name "Zylix" ^
+python -m PyInstaller --name "Zylix" ^
     --onefile ^
     --add-data "zylix;zylix" ^
     --icon="icon.ico" ^
