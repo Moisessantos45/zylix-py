@@ -43,6 +43,7 @@ REM Compilar con PyInstaller
 echo [3/5] Compilando con PyInstaller...
 uv run pyinstaller --name "Zylix" ^
     --onefile ^
+    --noconsole ^
     --add-data "zylix;zylix" ^
     --icon="icon.ico" ^
     --noconfirm ^

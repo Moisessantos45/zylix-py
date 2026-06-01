@@ -24,6 +24,7 @@ Write-Host ""
 Write-Host "[2/4] Compilando con PyInstaller..." -ForegroundColor Yellow
 uv run pyinstaller --name "Zylix" `
     --onefile `
+    --noconsole `
     --add-data "zylix;zylix" `
     --icon="icon.ico" `
     --noconfirm `

@@ -42,6 +42,7 @@ cd "$PROJECT_DIR"
 uv pip install pyinstaller
 uv run pyinstaller --name "Zylix" \
     --onefile \
+    --noconsole \
     --add-data "zylix:zylix" \
     --icon="icon.png" \
     --noconfirm \
