@@ -67,25 +67,57 @@ brew install tesseract poppler
 ```
 
 **Windows:**
-```powershell
-# Tesseract OCR
-winget install AlexandruPopescu.Tesseract
 
-# Poppler (para PDF a imagen)
-winget install AlexandruPopescu.poppler
-```
-O descargar manualmente desde:
-- Tesseract: https://github.com/UB-Mannheim/tesseract/wiki
-- Poppler: https://github.com/oschwartz10612/poppler-windows/releases
+1. **Tesseract OCR** - Descargar desde: https://github.com/UB-Mannheim/tesseract/wiki
+   ```powershell
+   # Verificar instalación
+   tesseract -v
+   ```
+
+2. **Poppler (para PDF a imagen)** - Descargar desde: https://github.com/oschwartz10612/poppler-windows/releases
+   - Descargar el ZIP que diga "Release"
+   - Descomprimir y colocar en `C:\poppler\Library\bin`
+   - Agregar al PATH de usuario:
+
+   ```powershell
+   $currentPath = [Environment]::GetEnvironmentVariable("Path", "User")
+   $newPath = "C:\poppler\Library\bin"
+
+   if (-not ($currentPath -split ';' -contains $newPath)) {
+       $newEnvPath = ($currentPath -split ';' | Where-Object { $_ -ne "" }) -join ';'
+       $newEnvPath += ";" + $newPath
+       [Environment]::SetEnvironmentVariable("Path", $newEnvPath, "User")
+   }
+   ```
+
+   - Verificar instalación:
+   ```powershell
+   pdfinfo -v
+   pdftotext -v
+   ```
 
 ### Instalar dependencias Python y ejecutar
 
+**Linux/macOS:**
 ```bash
 # Crear entorno virtual
 uv venv .venv
 source .venv/bin/activate
 
-# En Windows: .venv\Scripts\activate
+# Instalar dependencias
+uv sync
+
+# Ejecutar
+python -m zylix
+```
+
+**Windows (PowerShell):**
+```powershell
+# Crear entorno virtual
+uv venv .venv
+
+# Activar entorno
+.\.venv\Scripts\Activate.ps1
 
 # Instalar dependencias
 uv sync

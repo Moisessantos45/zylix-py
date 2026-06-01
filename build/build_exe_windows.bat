@@ -26,9 +26,9 @@ echo.
 
 REM Limpiar builds anteriores
 echo [1/5] Limpiando builds anteriores...
-if exist "dist" rmdir /s /q dist
-if exist "build" rmdir /s /q build
-if exist "*.spec" del /q "*.spec"
+if exist "dist" rmdir /s /q "dist" 2>nul
+if exist "build" rmdir /s /q "build" 2>nul
+if exist "*.spec" del /q "*.spec" 2>nul
 for /d /r %%i in (__pycache__) do rmdir /s /q "%%i" 2>nul
 echo.
 
