@@ -205,8 +205,10 @@ build/
 **Moises Santos Hernandez**
 
 - GitHub: https://github.com/Moisessantos45
-- Repositorio: https://github.com/Moisessantos45/zylix-py
-- Web: https://portafolio.mmabitec.me/
+- Zylix v2.0 (actual): https://github.com/Moisessantos45/zylix
+- Zylix v1.0 (Go/Wails): https://github.com/Moisessantos45/zylix
+- Zylix App (móvil): https://github.com/Moisessantos45/zylix-app
+- Web: https://portafolio.mmabitec.me/project/zylix-1780188298254825107
 
 ## Licencia
 
