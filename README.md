@@ -51,29 +51,41 @@ Ejecuta el instalador `zylix-setup.exe`
 
 - Python >= 3.10
 - uv (gestor de paquetes)
-- Para OCR: Tesseract instalado en el sistema
+- Tesseract (para OCR)
+- Poppler (para PDF a Imagen)
 
-### Instalar Tesseract (para OCR)
+### Instalar dependencias del sistema
 
 **Ubuntu/Debian:**
 ```bash
-sudo apt install tesseract-ocr
+sudo apt install tesseract-ocr poppler-utils
 ```
 
 **macOS:**
 ```bash
-brew install tesseract
+brew install tesseract poppler
 ```
 
 **Windows:**
-Descargar desde https://github.com/UB-Mannheim/tesseract/wiki
+```powershell
+# Tesseract OCR
+winget install AlexandruPopescu.Tesseract
 
-### Ejecutar desde código fuente
+# Poppler (para PDF a imagen)
+winget install AlexandruPopescu.poppler
+```
+O descargar manualmente desde:
+- Tesseract: https://github.com/UB-Mannheim/tesseract/wiki
+- Poppler: https://github.com/oschwartz10612/poppler-windows/releases
+
+### Instalar dependencias Python y ejecutar
 
 ```bash
 # Crear entorno virtual
 uv venv .venv
 source .venv/bin/activate
+
+# En Windows: .venv\Scripts\activate
 
 # Instalar dependencias
 uv sync
@@ -148,7 +160,7 @@ build/
 - **PDFs:** pypdf
 - **OCR:** pytesseract
 - **Procesamiento de imagen:** scikit-image
-- **Conversión PDF a imagen:** pdf2image
+- **Conversión PDF a imagen:** pdf2image + poppler
 - **Documentos Word:** python-docx
 - **Build:** PyInstaller, NSIS
 

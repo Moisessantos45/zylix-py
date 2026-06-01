@@ -5,8 +5,27 @@ echo   Zylix - Generador de EXE (Windows)
 echo ====================================
 echo.
 
+REM Verificar poppler
+echo [0/5] Verificando poppler...
+where pdftoppm >nul 2>&1
+if %errorlevel% neq 0 (
+    echo AVISO: Poppler no encontrado. Es necesario para PDF a Imagen.
+    echo.
+    echo Instalando poppler via chocolatey...
+    choco install poppler -y
+    if %errorlevel% neq 0 (
+        echo ERROR: No se pudo instalar poppler automaticamente.
+        echo Instala poppler manualmente desde:
+        echo   https://github.com/oschwartz10612/poppler-windows/releases
+        echo.
+        echo O usa chocolatey: winget install AlexandruPopescu.poppler
+        pause
+    )
+)
+echo.
+
 REM Limpiar builds anteriores
-echo [0/4] Limpiando builds anteriores...
+echo [1/5] Limpiando builds anteriores...
 if exist "dist" rmdir /s /q dist
 if exist "build" rmdir /s /q build
 if exist "*.spec" del /q "*.spec"
@@ -14,13 +33,13 @@ for /d /r %%i in (__pycache__) do rmdir /s /q "%%i" 2>nul
 echo.
 
 REM Instalar dependencias
-echo [1/4] Instalando dependencias...
+echo [2/5] Instalando dependencias...
 pip install pyinstaller
 pip install PySide6 pypdf pillow numpy pytesseract pdf2image scikit-image python-docx
 echo.
 
 REM Compilar con PyInstaller
-echo [2/4] Compilando con PyInstaller...
+echo [3/5] Compilando con PyInstaller...
 pyinstaller --name "Zylix" ^
     --onefile ^
     --add-data "zylix;zylix" ^
@@ -42,10 +61,10 @@ pyinstaller --name "Zylix" ^
 
 if exist "dist\Zylix.exe" (
     echo.
-    echo [3/4] EXE generado exitosamente!
+    echo [4/5] EXE generado exitosamente!
     echo    Ubicacion: dist\Zylix.exe
     echo.
-    echo [4/4] Copiando a carpeta build\windows...
+    echo [5/5] Copiando a carpeta build\windows...
     if not exist "build\windows" mkdir build\windows
     copy "dist\Zylix.exe" "build\windows\Zylix.exe" /Y
     if exist "icon.ico" copy "icon.ico" "build\windows\icon.ico" /Y
