@@ -27,7 +27,9 @@ echo.
 REM Limpiar builds anteriores
 echo [1/5] Limpiando builds anteriores...
 if exist "dist" rmdir /s /q "dist" 2>nul
-if exist "build" rmdir /s /q "build" 2>nul
+if exist "build\Zylix" rmdir /s /q "build\Zylix" 2>nul
+if exist "build\linux" rmdir /s /q "build\linux" 2>nul
+if exist "build\windows\zylix-setup.exe" del /q "build\windows\zylix-setup.exe" 2>nul
 if exist "*.spec" del /q "*.spec" 2>nul
 for /d /r %%i in (__pycache__) do rmdir /s /q "%%i" 2>nul
 echo.
