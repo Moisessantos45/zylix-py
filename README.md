@@ -1,0 +1,173 @@
+# Zylix
+
+Aplicación de escritorio para manipulación de PDFs e imágenes.
+
+## Características
+
+- **100% offline** - Sin conexión a internet requerida
+- **Multiplataforma** - Funciona en Windows y Linux
+- **Sin librerías de pago** - Totalmente gratuito
+
+## Funcionalidades
+
+### PDF
+- PDF a Imagen
+- Imagen a PDF
+- Unir PDFs
+- Dividir PDF
+- Comprimir PDF
+- Extraer Texto
+- Agregar Marca de Agua
+- Rotar PDF
+
+### Imagen
+- Cambiar Formato (PNG, JPG, WEBP, BMP)
+- Optimizar con calidad seleccionable
+- Rotar
+- Remover Fondo
+- OCR (extracción de texto)
+- Imagen a Word
+
+## Instalación
+
+### Linux (.deb)
+
+```bash
+sudo dpkg -i zylix_0.1.0_amd64.deb
+```
+
+Para desinstalar:
+```bash
+sudo dpkg -r zylix
+```
+
+### Windows
+
+Ejecuta el instalador `zylix-setup.exe`
+
+## Desarrollo
+
+### Requisitos
+
+- Python >= 3.10
+- uv (gestor de paquetes)
+- Para OCR: Tesseract instalado en el sistema
+
+### Instalar Tesseract (para OCR)
+
+**Ubuntu/Debian:**
+```bash
+sudo apt install tesseract-ocr
+```
+
+**macOS:**
+```bash
+brew install tesseract
+```
+
+**Windows:**
+Descargar desde https://github.com/UB-Mannheim/tesseract/wiki
+
+### Ejecutar desde código fuente
+
+```bash
+# Crear entorno virtual
+uv venv .venv
+source .venv/bin/activate
+
+# Instalar dependencias
+uv sync
+
+# Ejecutar
+python -m zylix
+```
+
+## Compilación
+
+### Linux - Generar .deb
+
+```bash
+./build/build_deb.sh
+```
+
+El instalador se genera en: `build/zylix_0.1.0_amd64.deb`
+
+### Windows - Generar .exe
+
+**Opción 1: Todo en Windows (requiere NSIS instalado)**
+
+1. Instalar NSIS desde: https://nsis.sourceforge.io/Download
+
+2. Ejecutar desde CMD o PowerShell:
+```bash
+.\build\build_exe_windows.bat
+```
+   - Genera `build\windows\Zylix.exe`
+
+3. Luego ejecutar:
+```bash
+.\build\build_exe_windows_nsis.bat
+```
+   - Genera `build\windows\zylix-setup.exe`
+
+**Opción 2: Compilar en Windows, crear installer en Linux**
+
+1. En Windows:
+```bash
+.\build\build_exe_windows.bat
+```
+
+2. Copiar `build\windows\Zylix.exe` a tu Linux en `dist/`
+
+3. En Linux:
+```bash
+./build/build_exe.sh
+```
+
+El instalador se genera en: `build/windows/zylix-setup.exe`
+
+### Estructura de scripts de build
+
+```
+build/
+├── build_deb.sh                  # Genera .deb para Linux
+├── build_exe.sh                 # Genera instalador .exe en Linux (requiere Zylix.exe en dist/)
+├── build_exe_windows.bat        # Compila Zylix.exe en Windows (CMD)
+├── build_exe_windows.ps1        # Compila Zylix.exe en Windows (PowerShell)
+├── build_exe_windows_nsis.bat   # Genera instalador .exe en Windows (requiere NSIS)
+└── windows/
+    ├── Zylix.exe                 # (generado por build_exe_windows.bat)
+    ├── icon.ico                  # Icono para el instalador
+    └── zylix-setup.exe           # Instalador NSIS generado
+```
+
+## Tecnologías
+
+- **UI:** PySide6
+- **Imágenes:** Pillow
+- **PDFs:** pypdf
+- **OCR:** pytesseract
+- **Procesamiento de imagen:** scikit-image
+- **Conversión PDF a imagen:** pdf2image
+- **Documentos Word:** python-docx
+- **Build:** PyInstaller, NSIS
+
+## Autor
+
+**Moises Santos Hernandez**
+
+- GitHub: https://github.com/Moisessantos45
+- Repositorio: https://github.com/Moisessantos45/zylix-py
+- Web: https://portafolio.mmabitec.me/
+
+## Licencia
+
+Este proyecto está bajo la licencia **Non-Commercial License**. Consulta el archivo `LICENSE` para más detalles.
+
+Se permite:
+- Uso educativo
+- Uso personal
+- Investigación y desarrollo
+- Crear obras derivadas basadas en este software
+
+No se permite uso comercial. Ver `LICENSE` para términos completos.
