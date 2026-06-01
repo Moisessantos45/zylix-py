@@ -19,6 +19,9 @@ def main():
     app.setApplicationName("Zylix")
     app.setApplicationVersion("0.1.0")
 
+    # Forzar estilo Fusion para consistencia entre plataformas
+    app.setStyle("Fusion")
+
     window = MainWindow()
     window.show()
 
