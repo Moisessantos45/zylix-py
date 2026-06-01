@@ -34,15 +34,14 @@ if exist "*.spec" del /q "*.spec" 2>nul
 for /d /r %%i in (__pycache__) do rmdir /s /q "%%i" 2>nul
 echo.
 
-REM Instalar dependencias
+REM Instalar dependencias (usar uv pip)
 echo [2/5] Instalando dependencias...
-python -m pip install pyinstaller
-python -m pip install PySide6 pypdf pillow numpy pytesseract pdf2image scikit-image python-docx
+uv pip install pyinstaller PySide6 pypdf pillow numpy pytesseract pdf2image scikit-image python-docx
 echo.
 
 REM Compilar con PyInstaller
 echo [3/5] Compilando con PyInstaller...
-python -m PyInstaller --name "Zylix" ^
+uv run pyinstaller --name "Zylix" ^
     --onefile ^
     --add-data "zylix;zylix" ^
     --icon="icon.ico" ^
