@@ -32,8 +32,10 @@ Aplicación de escritorio para manipulación de PDFs e imágenes.
 
 ### Linux (.deb)
 
+- **Descarga:** [zylix_2.0.0_amd64.deb](https://drive.google.com/file/d/1g_O9x8-QcMa0AkOm5liClDbscucFvrsV/view?usp=sharing)
+
 ```bash
-sudo dpkg -i zylix_0.1.0_amd64.deb
+sudo dpkg -i zylix_2.0.0_amd64.deb
 ```
 
 Para desinstalar:
@@ -42,6 +44,8 @@ sudo dpkg -r zylix
 ```
 
 ### Windows
+
+- **Descarga:** [zylix-setup-2.0.0.exe](https://drive.google.com/file/d/1urMFNchNGvD-3dL1ZdrCQoV865OeXWVk/view?usp=sharing)
 
 Ejecuta el instalador `zylix-setup.exe`
 
